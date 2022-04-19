@@ -3,8 +3,8 @@
 ################################
 device: "cuda:0"
 
-epochs: 100
-iters_per_checkpoint: 1000
+epochs: 2
+iters_per_checkpoint: 100
 
 output_dir: "/content/sova-tts-engine/output_dir"
 log_dir: "/content/sova-tts-engine/log_dir"
