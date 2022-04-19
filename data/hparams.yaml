@@ -6,8 +6,8 @@ device: "cuda:0"
 epochs: 100
 iters_per_checkpoint: 1000
 
-output_dir:
-log_dir:
+output_dir: "/content/sova-tts-engine/output_dir"
+log_dir: "/content/sova-tts-engine/log_dir"
 
 checkpoint:
 warm_start: true
@@ -28,12 +28,12 @@ ignore_mismatched_layers: True  # automatically ignore checkpoint layers with an
 # Data Parameters             #
 ################################
 load_mel_from_disk: False
-audios_path:
+audios_path: "/content/sova-tts-engine/LJSpeech-1.1"
 alignments_path:
   original:
   stressed:
-training_files:
-validation_files:
+training_files: "/content/sova-tts-engine/training.csv"
+validation_files: "/content/sova-tts-engine/validation.csv"
 
 charset: "ru" # possible entries: ru, en
 use_basic_handler: true
