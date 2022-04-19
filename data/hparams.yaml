@@ -35,7 +35,7 @@ alignments_path:
 training_files: "/content/sova-tts-engine/training.csv"
 validation_files: "/content/sova-tts-engine/validation.csv"
 
-charset: "ru" # possible entries: ru, en
+charset: "en" # possible entries: ru, en
 use_basic_handler: true
 
 # mask_stress: Union[float, bool]. If float, the number must be in {0, 1} - the probability of masking stressed
