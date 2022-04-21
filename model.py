@@ -781,14 +781,15 @@ def load_model(hparams, distributed_run=False):
         assert os.path.isfile(checkpoint_path)
         print("Warm starting model from checkpoint '{}'".format(checkpoint_path))
         checkpoint_dict = torch.load(checkpoint_path, map_location='cpu')
-        model_dict = checkpoint_dict['state_dict']
-        if len(ignore_layers) > 0:
-            model_dict = {k: v for k, v in model_dict.items()
-                          if k not in ignore_layers}
-            dummy_dict = model.state_dict()
-            dummy_dict.update(model_dict)
-            model_dict = dummy_dict
-        model.load_state_dict(model_dict)
+        # model_dict = checkpoint_dict['state_dict']
+        # if len(ignore_layers) > 0:
+        #     model_dict = {k: v for k, v in model_dict.items()
+        #                   if k not in ignore_layers}
+        #     dummy_dict = model.state_dict()
+        #     dummy_dict.update(model_dict)
+        #     model_dict = dummy_dict
+        # model.load_state_dict(model_dict)
+        model.load_state_dict(checkpoint_dict)
         return model
 
     checkpoint_path = "/content/drive/MyDrive/SBIS_schemes/checkpoint_tacotron"
