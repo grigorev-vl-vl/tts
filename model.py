@@ -47,6 +47,7 @@ from utils import utils as utl
 
 # TODO import whole tacotron2
 from Tacotron2 import tacotron2, tacotron2_common
+from Tacotron2.tacotron2 import model
 
 class LocationLayer(nn.Module):
     def __init__(self, attention_n_filters, attention_kernel_size, attention_dim, initscheme="xavier_uniform"):
