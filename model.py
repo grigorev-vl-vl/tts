@@ -774,21 +774,9 @@ def load_model(hparams, distributed_run=False):
         model = apply_gradient_allreduce(model)
 
     # TODO Сделать флаг для загрузки/незагрузки пре-трейна
-    def warm_start_tacotron(checkpoint_path, model, ignore_layers):
-        print("Warm starting TACOTRON model from checkpoint '{}'".format(checkpoint_path))
-        checkpoint_dict = torch.load(checkpoint_path, map_location='cpu')
-        model_dict = checkpoint_dict['state_dict']
-        if len(ignore_layers) > 0:
-            model_dict = {k: v for k, v in model_dict.items()
-                          if k not in ignore_layers}
-            dummy_dict = model.state_dict()
-            dummy_dict.update(model_dict)
-            model_dict = dummy_dict
-        model.load_state_dict(model_dict)
-        return model
     checkpoint_path = "/content/drive/MyDrive/SBIS_schemes/checkpoint_tacotron"
     ignore_layers = ''
-    warm_model = warm_start_tacotron(checkpoint_path, model, ignore_layers)
+    warm_model = tacotron2.train.warm_start_model(checkpoint_path, model, ignore_layers)
     return warm_model
 
 
