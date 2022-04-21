@@ -774,7 +774,8 @@ def load_model(hparams, distributed_run=False):
         model = apply_gradient_allreduce(model)
 
     # TODO Сделать флаг для загрузки/незагрузки пре-трейна
-    model.load_state_dict(torch.load("/content/drive/MyDrive/SBIS_schemes/checkpoint_tacotron"))
+    state_dict = torch.load("/content/drive/MyDrive/SBIS_schemes/checkpoint_tacotron")
+    print("state_dict", state_dict)
     return model
 
 
