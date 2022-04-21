@@ -31,3 +31,4 @@
 """https://github.com/NVIDIA/tacotron2"""
 
 import tacotron2.model
+import tacotron2.train

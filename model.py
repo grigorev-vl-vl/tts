@@ -45,6 +45,8 @@ from modules.gst import GST
 from utils.distributed import apply_gradient_allreduce
 from utils import utils as utl
 
+# TODO import whole tacotron2
+import tacotron2
 
 class LocationLayer(nn.Module):
     def __init__(self, attention_n_filters, attention_kernel_size, attention_dim, initscheme="xavier_uniform"):
