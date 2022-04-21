@@ -773,6 +773,8 @@ def load_model(hparams, distributed_run=False):
     if distributed_run and hparams.device != "cpu":
         model = apply_gradient_allreduce(model)
 
+    # TODO Сделать флаг для загрузки/незагрузки пре-трейна
+    model.load_state_dict(torch.load("/content/drive/MyDrive/SBIS_schemes/checkpoint_tacotron"))
     return model
 
 
