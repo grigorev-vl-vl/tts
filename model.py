@@ -798,7 +798,7 @@ def load_model(hparams, distributed_run=False):
         checkpoint_dict = torch.load(checkpoint_path, map_location='cpu')
         # TODO как бы проверить, что я загружаю правильный чекпойнт, и гиперпараметры совпадают?
         state_dict = checkpoint_dict["state_dict"]
-        model.load_state_dict(checkpoint_dict, strict=True)
+        model.load_state_dict(state_dict, strict=True)
         return model
 
     checkpoint_path = "/content/drive/MyDrive/sova_checkpoints/tacotron2_statedict.pt"
