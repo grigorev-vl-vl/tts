@@ -804,7 +804,7 @@ def load_model(hparams, distributed_run=False):
     ignore_layers = ''
     warm_model = load_checkpoint(checkpoint_path, model)
     # TODO Пишу локальные логи
-    with open("sova-tts-engine/model_log.txt", 'w') as f:
+    with open("/content/sova-tts-engine/model_log.txt", 'w') as f:
         table = PrettyTable(["Modules", "Parameters"])
         total_params = 0
         for name, parameter in warm_model.named_parameters():
