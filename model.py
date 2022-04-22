@@ -45,6 +45,9 @@ from modules.gst import GST
 from utils.distributed import apply_gradient_allreduce
 from utils import utils as utl
 
+import sys
+from prettytable import PrettyTable
+
 # TODO import whole tacotron2
 from Tacotron2 import tacotron2, tacotron2_common
 from Tacotron2.tacotron2 import model
@@ -800,6 +803,17 @@ def load_model(hparams, distributed_run=False):
     checkpoint_path = "/content/drive/MyDrive/sova_checkpoints/tacotron2_statedict.pt"
     ignore_layers = ''
     warm_model = load_checkpoint(checkpoint_path, model)
+    # TODO Пишу локальные логи
+    with open("sova-tts-engine/model_log.txt", 'w') as f:
+        table = PrettyTable(["Modules", "Parameters"])
+        total_params = 0
+        for name, parameter in warm_model.named_parameters():
+            if not parameter.requires_grad: continue
+            params = parameter.numel()
+            table.add_row([name, params])
+            total_params += params
+        f.write(str(table))
+        f.write(f"Total trainable params: {total_params}")
     # TODO не совпадают ключи в state_dict модели. Надо поправить как-то вот
     return warm_model
 
