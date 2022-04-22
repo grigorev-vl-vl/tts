@@ -793,17 +793,11 @@ def load_model(hparams, distributed_run=False):
     def load_checkpoint(checkpoint_path, model):
         print("Loading checkpoint '{}'".format(checkpoint_path))
         checkpoint_dict = torch.load(checkpoint_path, map_location='cpu')
-        model.load_state_dict(checkpoint_dict, strict=False)
-        # model.load_state_dict(checkpoint_dict['state_dict'])
-        # optimizer.load_state_dict(checkpoint_dict['optimizer'])
-        # learning_rate = checkpoint_dict['learning_rate']
-        # iteration = checkpoint_dict['iteration']
-        print("Loaded checkpoint '{}' from iteration {}".format(
-            checkpoint_path, iteration))
-        # return model, optimizer, learning_rate, iteration
+        # TODO как бы проверить, что я загружаю правильный чекпойнт, и гиперпараметры совпадают?
+        model.load_state_dict(checkpoint_dict, strict=True)
         return model
 
-    checkpoint_path = "/content/drive/MyDrive/SBIS_schemes/checkpoint_tacotron"
+    checkpoint_path = "/content/drive/MyDrive/sova_checkpoints/tacotron2_statedict.pt"
     ignore_layers = ''
     warm_model = load_checkpoint(checkpoint_path, model)
     # TODO не совпадают ключи в state_dict модели. Надо поправить как-то вот
